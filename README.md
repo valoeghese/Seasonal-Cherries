@@ -1,4 +1,4 @@
 # Seasonal Cherries
 
-Serene Seasons addon mod to make cherry trees change with the seasons. Placed cherry blocks are not affected.
+Serene Seasons addon mod to make cherry trees change with the seasons. User-placed cherry leaves and petals are not affected.
 
