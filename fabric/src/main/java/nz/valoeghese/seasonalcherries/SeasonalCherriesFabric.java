@@ -2,7 +2,7 @@ package nz.valoeghese.seasonalcherries;
 
 import net.fabricmc.api.ModInitializer;
 
-public class ExampleMod implements ModInitializer {
+public class SeasonalCherriesFabric implements ModInitializer {
     
     @Override
     public void onInitialize() {

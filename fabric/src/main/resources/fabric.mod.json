@@ -8,15 +8,14 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://fabricmc.net/",
-        "sources": "https://github.com/FabricMC/fabric-example-mod"
+        "sources": "https://github.com/valoeghese/Seasonal-Cherries"
     },
     "license": "${license}",
     "icon": "${mod_id}.png",
     "environment": "*",
     "entrypoints": {
         "main": [
-          "nz.valoeghese.seasonalcherries.ExampleMod"
+            "nz.valoeghese.seasonalcherries.SeasonalCherriesFabric"
         ]
     },
     "mixins": [

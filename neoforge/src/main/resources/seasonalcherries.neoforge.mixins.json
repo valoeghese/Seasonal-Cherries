@@ -1,11 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.example.examplemod.mixin",
+  "package": "nz.valoeghese.seasonalcherries.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [],
   "client": [
-    "nz.valoeghese.seasonalcherries.mixin.MixinTitleScreen"
   ],
   "server": [],
   "injectors": {
