@@ -1,12 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.example.examplemod.mixin",
+  "package": "nz.valoeghese.seasonalcherries.mixin",
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_18",
   "mixins": [],
   "client": [
-    "nz.valoeghese.seasonalcherries.mixin.MixinMinecraft"
+    "MixinMinecraft"
   ],
   "server": [],
   "injectors": {
