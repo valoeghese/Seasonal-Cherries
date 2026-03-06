@@ -75,6 +75,10 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
+
+    // Serene Seasons
+    implementation 'com.github.glitchfiend:GlitchCore-forge:' + minecraft_version + '-' + glitchcore_version
+    implementation 'com.github.glitchfiend:SereneSeasons-forge:' + minecraft_version + '-' + seasons_version
 }
 
 publishing {

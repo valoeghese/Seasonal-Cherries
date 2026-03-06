@@ -10,6 +10,10 @@ dependencies {
     }
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+
+    // Serene Seasons
+    modImplementation 'com.github.glitchfiend:GlitchCore-fabric:' + minecraft_version + '-' + glitchcore_version
+    modImplementation 'com.github.glitchfiend:SereneSeasons-fabric:' + minecraft_version + '-' + seasons_version
 }
 
 loom {

@@ -3,6 +3,12 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
+dependencies {
+    // Serene Seasons
+    implementation 'com.github.glitchfiend:GlitchCore-neoforge:' + minecraft_version + '-' + glitchcore_version
+    implementation 'com.github.glitchfiend:SereneSeasons-neoforge:' + minecraft_version + '-' + seasons_version
+}
+
 neoForge {
     version = neoforge_version
     // Automatically enable neoforge AccessTransformers if the file exists
