@@ -25,6 +25,10 @@ dependencies {
     // Serene Seasons
     compileOnly 'com.github.glitchfiend:GlitchCore-common:' + minecraft_version + '-' + glitchcore_version
     compileOnly 'com.github.glitchfiend:SereneSeasons-common:' + minecraft_version + '-' + seasons_version
+
+    compileOnly("com.electronwill.night-config:toml:${nightconfig_version}")
+    compileOnly("com.electronwill.night-config:core:${nightconfig_version}")
+    compileOnly("com.google.code.findbugs:jsr305:3.0.2")
 }
 
 configurations {

@@ -5,23 +5,44 @@ import com.mojang.blaze3d.buffers.GpuBufferSlice;
 import com.mojang.blaze3d.systems.RenderPass;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.textures.*;
+import glitchcore.event.client.RegisterColorsEvent;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.SpriteContents;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.data.AtlasIds;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.FoliageColor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import nz.valoeghese.seasonalcherries.api.SeasonalTextures;
 import nz.valoeghese.seasonalcherries.mixin.AccessorTextureAtlas;
 import org.lwjgl.system.MemoryUtil;
+import sereneseasons.api.season.ISeasonColorProvider;
+import sereneseasons.api.season.ISeasonState;
 import sereneseasons.api.season.Season;
+import sereneseasons.api.season.SeasonHelper;
+import sereneseasons.init.ModConfig;
+import sereneseasons.init.ModTags;
 import sereneseasons.season.SeasonTime;
+import sereneseasons.util.SeasonColorUtil;
 
+import javax.annotation.Nullable;
 import java.nio.ByteBuffer;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.OptionalInt;
 
 public class SeasonalCherriesClient {
     // Seasonal Textures
@@ -39,6 +60,36 @@ public class SeasonalCherriesClient {
             case LATE_SPRING -> CHERRY_LEAVES_LATE;
             default -> OAK_LEAVES;
         });
+    }
+
+    public static void onBlockColoursRegister(RegisterColorsEvent.Block event) {
+        event.register((BlockState state, @Nullable BlockAndTintGetter dimensionReader, @Nullable BlockPos pos, int tintIndex) -> {
+            Level level = Minecraft.getInstance().player.level();
+            ResourceKey<Level> dimension = Minecraft.getInstance().player.level().dimension();
+            int colour = 0xFFFFFF;
+            if (state.getValue(LeavesBlock.PERSISTENT)) {
+                return colour;
+            }
+
+            if (level != null && pos != null && ModConfig.seasons.isDimensionWhitelisted(dimension))
+            {
+                Holder<Biome> biome = level.getBiome(pos);
+
+                if (!biome.is(ModTags.Biomes.BLACKLISTED_BIOMES))
+                {
+                    ISeasonState calendar = SeasonHelper.getSeasonState(level);
+                    ISeasonColorProvider colorProvider = biome.is(ModTags.Biomes.TROPICAL_BIOMES) ? calendar.getTropicalSeason() : calendar.getSubSeason();
+
+                    if (calendar.getSeason() == Season.WINTER) {
+                        colour = 0xb78d5f; // brown
+                    } else if (calendar.getSeason() != Season.SPRING) {
+                        colour = SeasonColorUtil.mixColours(colorProvider.getFoliageOverlay(), FoliageColor.FOLIAGE_DEFAULT, calendar.getSeason() == Season.AUTUMN ? 0.33F : 0.67f);
+                    }
+                }
+            }
+
+            return colour;
+        }, Blocks.CHERRY_LEAVES);
     }
 
     public static void onSeasonChangedClient(SeasonTime calendar) {
