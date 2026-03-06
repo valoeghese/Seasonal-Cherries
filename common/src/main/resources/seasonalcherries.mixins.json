@@ -10,7 +10,8 @@
   "client": [
     "AccessorTextureAtlas",
     "MixinSeasonHandlerClient",
-    "MixinSpriteContents"
+    "MixinSpriteContents",
+    "MixinTextureAtlas"
   ],
   "server": [],
   "injectors": {

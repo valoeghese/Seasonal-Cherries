@@ -1,8 +1,6 @@
 package nz.valoeghese.seasonalcherries.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.client.Minecraft;
-import nz.valoeghese.seasonalcherries.Constants;
 import nz.valoeghese.seasonalcherries.SeasonalCherriesClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,12 +11,12 @@ import sereneseasons.season.SeasonTime;
 
 @Mixin(SeasonHandlerClient.class)
 public class MixinSeasonHandlerClient {
-    
     @Inject(method = "onClientTick", at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/client/renderer/LevelRenderer;allChanged()V"
     ))
     private static void init(CallbackInfo info, @Local SeasonTime calendar) {
-        SeasonalCherriesClient.onSeasonChangedClient(calendar);
+        SeasonalCherriesClient.clientSeason = calendar.getSubSeason();
+        SeasonalCherriesClient.onSeasonChangedClient(calendar.getSubSeason());
     }
 }

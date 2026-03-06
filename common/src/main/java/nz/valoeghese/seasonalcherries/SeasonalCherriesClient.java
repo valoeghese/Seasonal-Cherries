@@ -53,6 +53,8 @@ public class SeasonalCherriesClient {
     private static final Identifier CHERRY_LEAVES_LATE = Identifier.parse("seasonalcherries:block/cherry_leaves_late_spring");
     private static final Identifier OAK_LEAVES = Identifier.parse("minecraft:block/oak_leaves");
 
+    public static Season.SubSeason clientSeason;
+
     public static void initClient() {
         SeasonalTextures.setSeasonalTexture(CHERRY_LEAVES_NATURAL, season -> switch (season) {
             case EARLY_SPRING -> CHERRY_LEAVES_EARLY;
@@ -92,7 +94,7 @@ public class SeasonalCherriesClient {
         }, Blocks.CHERRY_LEAVES);
     }
 
-    public static void onSeasonChangedClient(SeasonTime calendar) {
+    public static void onSeasonChangedClient(Season.SubSeason subSeason) {
         Constants.LOG.info("Updating seasonal textures");
 
         TextureAtlas blockAtlas = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(AtlasIds.BLOCKS);
@@ -115,7 +117,7 @@ public class SeasonalCherriesClient {
         // Prepare Source and Destination Textures
         Map<TextureAtlasSprite, GpuTextureView[]> viewsCreated = new HashMap<>();
 
-        SeasonalTextures.forEach(calendar.getSubSeason(), (dest, src) -> {
+        SeasonalTextures.forEach(subSeason, (dest, src) -> {
             TextureAtlasSprite spriteDest = blockAtlas.getSprite(dest);
             TextureAtlasSprite spriteSrc = blockAtlas.getSprite(src);
 
