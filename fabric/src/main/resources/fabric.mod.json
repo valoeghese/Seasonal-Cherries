@@ -16,6 +16,9 @@
     "entrypoints": {
         "main": [
             "nz.valoeghese.seasonalcherries.SeasonalCherriesFabric"
+        ],
+        "client": [
+            "nz.valoeghese.seasonalcherries.SeasonalCherriesFabricClient"
         ]
     },
     "mixins": [
