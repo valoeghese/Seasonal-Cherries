@@ -8,6 +8,7 @@ import com.mojang.blaze3d.textures.*;
 import glitchcore.event.client.RegisterColorsEvent;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.SpriteContents;
 import net.minecraft.client.renderer.texture.TextureAtlas;
@@ -28,6 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import nz.valoeghese.seasonalcherries.api.SeasonalTextures;
 import nz.valoeghese.seasonalcherries.mixin.AccessorTextureAtlas;
 import org.lwjgl.system.MemoryUtil;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import sereneseasons.api.season.ISeasonColorProvider;
 import sereneseasons.api.season.ISeasonState;
 import sereneseasons.api.season.Season;
@@ -92,6 +94,21 @@ public class SeasonalCherriesClient {
 
             return colour;
         }, Blocks.CHERRY_LEAVES);
+    }
+
+    public static void onDHColour(ClientLevel level, BlockState blockState, CallbackInfoReturnable<Integer> result) {
+        if (blockState != null && blockState.is(Blocks.CHERRY_LEAVES) && !blockState.getValue(LeavesBlock.PERSISTENT)) {
+            ISeasonState season = SeasonHelper.getSeasonState(level);
+
+            if (season.getSeason() == Season.SPRING) {
+                int colour = switch (season.getSubSeason()) {
+                    case EARLY_SPRING -> 0xFF745A3F;
+                    case LATE_SPRING ->  0xFF336B23;
+                    default -> 0xFFE6B2CB;
+                };
+                result.setReturnValue(colour);
+            }
+        }
     }
 
     public static void onSeasonChangedClient(Season.SubSeason subSeason) {

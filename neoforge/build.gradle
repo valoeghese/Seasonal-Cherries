@@ -8,6 +8,9 @@ dependencies {
     implementation 'com.github.glitchfiend:GlitchCore-neoforge:' + minecraft_version + '-' + glitchcore_version
     implementation 'com.github.glitchfiend:SereneSeasons-neoforge:' + minecraft_version + '-' + seasons_version
     compileOnly("com.google.code.findbugs:jsr305:3.0.2")
+
+    // Compat DH
+    compileOnly ("maven.modrinth:distanthorizons:2.4.5-b-1.21.11")
 }
 
 neoForge {

@@ -4,7 +4,9 @@
   "package": "nz.valoeghese.seasonalcherries.mixin",
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "FabricDistantHorizonsCompat"
+  ],
   "client": [
   ],
   "server": [],
