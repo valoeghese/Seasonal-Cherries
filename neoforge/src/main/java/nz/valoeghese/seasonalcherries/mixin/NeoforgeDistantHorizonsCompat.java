@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2026 Valoeghese
+ * Licensed under the BSD 3-Clause License.
+ * See the LICENSE file in the project root for license information.
+ */
+
 package nz.valoeghese.seasonalcherries.mixin;
 
 import com.seibel.distanthorizons.core.dataObjects.fullData.sources.FullDataSourceV2;

@@ -1,11 +1,15 @@
+/*
+ * Copyright (c) 2026 Valoeghese
+ * Licensed under the BSD 3-Clause License.
+ * See the LICENSE file in the project root for license information.
+ */
+
 package nz.valoeghese.seasonalcherries.api;
 
 import net.minecraft.resources.Identifier;
 import sereneseasons.api.season.Season;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
