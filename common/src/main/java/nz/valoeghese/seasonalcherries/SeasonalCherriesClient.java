@@ -103,7 +103,8 @@ public class SeasonalCherriesClient {
             if (season.getSeason() == Season.SPRING) {
                 int colour = switch (season.getSubSeason()) {
                     case EARLY_SPRING -> 0xFF745A3F;
-                    case LATE_SPRING ->  0xFF336B23;
+                    // FF526841 is closer to what it looks like from a distance, but the contrast is too much in a spyglass
+                    case LATE_SPRING ->  0xFF4B683A;
                     default -> 0xFFE6B2CB;
                 };
                 result.setReturnValue(colour);
