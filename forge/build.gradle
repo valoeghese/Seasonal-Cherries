@@ -77,8 +77,8 @@ dependencies {
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
 
     // Serene Seasons
-    implementation 'com.github.glitchfiend:GlitchCore-forge:' + minecraft_version + '-' + glitchcore_version
-    implementation 'com.github.glitchfiend:SereneSeasons-forge:' + minecraft_version + '-' + seasons_version
+    implementation 'com.github.glitchfiend:GlitchCore-forge:' + glitchcore_version
+    implementation 'com.github.glitchfiend:SereneSeasons-forge:' + seasons_version
     compileOnly("com.google.code.findbugs:jsr305:3.0.2")
 }
 

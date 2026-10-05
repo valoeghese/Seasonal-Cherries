@@ -4,23 +4,20 @@ plugins {
 }
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.layered {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
-    }
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+
+    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
     // Serene Seasons
-    modImplementation 'com.github.glitchfiend:GlitchCore-fabric:' + minecraft_version + '-' + glitchcore_version
-    modImplementation 'com.github.glitchfiend:SereneSeasons-fabric:' + minecraft_version + '-' + seasons_version
+    implementation 'com.github.glitchfiend:GlitchCore-fabric:' + glitchcore_version
+    implementation 'com.github.glitchfiend:SereneSeasons-fabric:' + seasons_version
 
     implementation("com.electronwill.night-config:toml:${nightconfig_version}")
     implementation("com.electronwill.night-config:core:${nightconfig_version}")
     compileOnly("com.google.code.findbugs:jsr305:3.0.2")
 
     // Compat DH
-    modCompileOnly("maven.modrinth:distanthorizons:2.4.5-b-1.21.11")
+    compileOnly("maven.modrinth:distanthorizons:3.3.3-26.1.2")
 }
 
 loom {
@@ -62,13 +59,6 @@ sourceSets.configureEach {
             attributes {
                 attribute(loaderAttribute, 'fabric')
             }
-        }
-    }
-}
-loom.remapConfigurations.configureEach {
-    configurations.named(it.name) {
-        attributes {
-            attribute(loaderAttribute, 'fabric')
         }
     }
 }

@@ -10,7 +10,7 @@ dependencies {
     compileOnly("com.google.code.findbugs:jsr305:3.0.2")
 
     // Compat DH
-    compileOnly ("maven.modrinth:distanthorizons:2.4.5-b-1.21.11")
+    compileOnly ("maven.modrinth:distanthorizons:3.3.3-26.1.2")
 }
 
 neoForge {
@@ -19,10 +19,6 @@ neoForge {
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
-    }
-    parchment {
-        minecraftVersion = parchment_minecraft
-        mappingsVersion = parchment_version
     }
     runs {
         configureEach {
